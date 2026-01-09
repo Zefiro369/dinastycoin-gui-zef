@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.12)
-project(monero-gui)
+project(dinastycoin-gui)
 
 message(STATUS "Initiating compile using CMake ${CMAKE_VERSION}")
 
@@ -14,14 +14,14 @@ option(USE_DEVICE_TREZOR "Trezor support compilation" ON)
 option(WITH_SCANNER "Enable webcam QR scanner" OFF)
 option(WITH_DESKTOP_ENTRY "Ask to install desktop entry on first startup" ON)
 option(WITH_UPDATER "Regularly check for new updates" ON)
-option(DEV_MODE "Checkout latest monero master on build" OFF)
+option(DEV_MODE "Checkout latest dinastycoin master on build" OFF)
 
-if(DEV_MODE)
-  # DEV_MODE checks out the monero submodule to master, which requires C++17.
+#if(DEV_MODE)
+  # DEV_MODE checks out the dinastycoin submodule to master, which requires C++17.
   set(CMAKE_CXX_STANDARD 17)
-else()
+#else()
   set(CMAKE_CXX_STANDARD 14)
-endif()
+#endif()
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 list(INSERT CMAKE_MODULE_PATH 0 "${CMAKE_SOURCE_DIR}/cmake")
@@ -47,12 +47,12 @@ if(NOT MANUAL_SUBMODULES)
         endif()
       endfunction ()
       message(STATUS "Checking submodules")
-      check_submodule(monero)
+      check_submodule(dinastycoin)
     else()
-      execute_process(COMMAND ${GIT_EXECUTABLE} fetch WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/monero RESULT_VARIABLE GIT_FETCH_RESULT)
-      execute_process(COMMAND ${GIT_EXECUTABLE} checkout -f origin/master WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/monero RESULT_VARIABLE GIT_CHECKOUT_MASTER_RESULT)
-      execute_process(COMMAND ${GIT_EXECUTABLE} submodule sync --recursive WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/monero RESULT_VARIABLE GIT_SUBMODULE_SYNC_RESULT)
-      execute_process(COMMAND ${GIT_EXECUTABLE} submodule update --init --force --recursive WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/monero RESULT_VARIABLE GIT_SUBMODULE_UPDATE_RESULT)
+      execute_process(COMMAND ${GIT_EXECUTABLE} fetch WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/dinastycoin RESULT_VARIABLE GIT_FETCH_RESULT)
+      execute_process(COMMAND ${GIT_EXECUTABLE} checkout -f origin/master WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/dinastycoin RESULT_VARIABLE GIT_CHECKOUT_MASTER_RESULT)
+      execute_process(COMMAND ${GIT_EXECUTABLE} submodule sync --recursive WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/dinastycoin RESULT_VARIABLE GIT_SUBMODULE_SYNC_RESULT)
+      execute_process(COMMAND ${GIT_EXECUTABLE} submodule update --init --force --recursive WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/dinastycoin RESULT_VARIABLE GIT_SUBMODULE_UPDATE_RESULT)
       if(NOT GIT_FETCH_RESULT EQUAL "0" OR NOT GIT_CHECKOUT_MASTER_RESULT EQUAL "0" OR NOT GIT_SUBMODULE_SYNC_RESULT EQUAL "0" OR NOT GIT_SUBMODULE_UPDATE_RESULT EQUAL "0")
         message(FATAL_ERROR "Updating git submodule to master (-DDEV_MODE=ON) failed")
       endif()
@@ -60,15 +60,15 @@ if(NOT MANUAL_SUBMODULES)
   endif()
 endif()
 
-add_subdirectory(monero)
+add_subdirectory(dinastycoin)
 add_subdirectory(external)
 
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 set(CMAKE_AUTOUIC ON)
 
-get_directory_property(ARCH_WIDTH DIRECTORY "monero" DEFINITION ARCH_WIDTH)
-get_directory_property(Boost_VERSION_STRING DIRECTORY "monero" DEFINITION Boost_VERSION_STRING)
+get_directory_property(ARCH_WIDTH DIRECTORY "dinastycoin" DEFINITION ARCH_WIDTH)
+get_directory_property(Boost_VERSION_STRING DIRECTORY "dinastycoin" DEFINITION Boost_VERSION_STRING)
 
 if (NOT CMAKE_BUILD_TYPE STREQUAL "Debug")
   add_definitions(-DQT_NO_DEBUG)
@@ -81,7 +81,7 @@ if(STATIC)
 endif()
 
 include(CMakePackageConfigHelpers)
-
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/dinastycoin/contrib/epee/include)
 include_directories(${EASYLOGGING_INCLUDE})
 link_directories(${EASYLOGGING_LIBRARY_DIRS})
 
