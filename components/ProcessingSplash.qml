@@ -1,3 +1,4 @@
+// Copyright (c) 2025-2026, The Dinastycoin Project
 // Copyright (c) 2014-2024, The Monero Project
 //
 // All rights reserved.
@@ -74,7 +75,7 @@ Rectangle {
                 width: 60
                 height: 60
                 anchors.centerIn: parent
-                source: "qrc:///images/monero-vector.svg"
+                source: "qrc:///images/dinastycoin-vector.svg"
                 mipmap: true
             }
 

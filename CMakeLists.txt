@@ -13,16 +13,13 @@ option(STATIC "Link libraries statically, requires static Qt")
 option(USE_DEVICE_TREZOR "Trezor support compilation" ON)
 option(WITH_SCANNER "Enable webcam QR scanner" OFF)
 option(WITH_DESKTOP_ENTRY "Ask to install desktop entry on first startup" ON)
-option(WITH_UPDATER "Regularly check for new updates" ON)
+option(WITH_UPDATER "Regularly check for new updates" OFF) #disabilitato in fase di test
 option(DEV_MODE "Checkout latest dinastycoin master on build" OFF)
 
-#if(DEV_MODE)
-  # DEV_MODE checks out the dinastycoin submodule to master, which requires C++17.
-  set(CMAKE_CXX_STANDARD 17)
-#else()
-  set(CMAKE_CXX_STANDARD 14)
-#endif()
+ 
+set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS OFF)
 
 list(INSERT CMAKE_MODULE_PATH 0 "${CMAKE_SOURCE_DIR}/cmake")
 include(CheckCCompilerFlag)
@@ -82,7 +79,9 @@ endif()
 
 include(CMakePackageConfigHelpers)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/dinastycoin/contrib/epee/include)
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/dinastycoin/src)
 include_directories(${EASYLOGGING_INCLUDE})
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/dinastycoin/external/easylogging++)
 link_directories(${EASYLOGGING_LIBRARY_DIRS})
 
 include(VersionGui)

@@ -1,3 +1,4 @@
+// Copyright (c) 2025-2026, The Dinastycoin Project
 // Copyright (c) 2014-2024, The Monero Project
 //
 // All rights reserved.
@@ -72,7 +73,7 @@ Rectangle {
             Layout.preferredWidth: parent.height * 3
         }
 
-        // monero logo
+        // Dinastycoin logo
         Item {
             Layout.fillWidth: true
             Layout.preferredHeight: parent.height
@@ -85,7 +86,7 @@ Rectangle {
                 anchors.horizontalCenter: parent.horizontalCenter
                 anchors.verticalCenter: parent.verticalCenter
 
-                source: "qrc:///images/moneroLogo_white.png"
+                source: "qrc:///images/dinastycoinLogo_white.png"
             }
         }
 

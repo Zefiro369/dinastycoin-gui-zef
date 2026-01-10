@@ -55,8 +55,8 @@ Item {
 
     height: small ?  30 : 36
     width: buttonLayout.width + 22
-    implicitHeight: height
-    implicitWidth: width
+   // implicitHeight: height
+   // implicitWidth: width
 
     function doClick(){
         releaseFocus();

@@ -1,3 +1,4 @@
+// Copyright (c) 2025-2026, The Dinastycoin Project
 // Copyright (c) 2014-2024, The Monero Project
 // 
 // All rights reserved.
