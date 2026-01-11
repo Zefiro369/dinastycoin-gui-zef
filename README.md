@@ -1,4 +1,4 @@
-# Dinastycoin GUI
+# Dinastycoin GUI  TESLA £&9 BETA VERSION
 Copyright (c) 2025-2026, The Dinastycoin Project
 Copyright (c) 2014-2024, The Monero Project
 
@@ -230,7 +230,7 @@ The following instructions will fetch Qt from your distribution's repositories i
 
     ```
     git clone --recursive https://github.com/dinastyoffreedom/dinastycoin-gui.git
-    cd mondinastycoinero-gui
+    cd dinastycoi-gui
     ```
 
 4. Build
