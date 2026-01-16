@@ -44,3 +44,5 @@ tags
 *.zip/Output/
 /dist/
 **/.DS_Store
+*.bat
+
