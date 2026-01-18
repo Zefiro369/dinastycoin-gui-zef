@@ -1,4 +1,6 @@
+// Copyright (c) 2025-2026, The Dinastycoin Project
 // Copyright (c) 2014-2024, The Monero Project
+
 // 
 // All rights reserved.
 // 
@@ -74,7 +76,7 @@ Rectangle {
 
         MoneroComponents.TextPlain {
             id: soloMainLabel
-            text: qsTr("Mining with your computer helps strengthen the Monero network. The more people mine, the harder it is for the network to be attacked, and every little bit helps.\n\nMining also gives you a small chance to earn some Monero. Your computer will create hashes looking for block solutions. If you find a block, you will get the associated reward. Good luck!") + "\n\n" + qsTr("P2Pool mining is a decentralized way to pool mine that pays out more frequently compared to solo mining, while also supporting the network.") + translationManager.emptyString
+            text: qsTr("Mining with your computer helps strengthen the Dinastycoin network. The more people mine, the harder it is for the network to be attacked, and every little bit helps.\n\nMining also gives you a small chance to earn some Dinastycoin. Your computer will create hashes looking for block solutions. If you find a block, you will get the associated reward. Good luck!") + "\n\n" + qsTr("P2Pool mining is a decentralized way to pool mine that pays out more frequently compared to solo mining, while also supporting the network.") + translationManager.emptyString
             wrapMode: Text.Wrap
             Layout.fillWidth: true
             font.family: MoneroComponents.Style.fontRegular.name
@@ -450,9 +452,9 @@ Rectangle {
                     text: "
                     Usage:<br>
                         --wallet              Wallet address to mine to. Subaddresses and integrated addresses are not supported!<br>
-                        --host                IP address of your Monero node, default is 127.0.0.1<br>
-                        --rpc-port            monerod RPC API port number, default is 37176<br>
-                        --zmq-port            monerod ZMQ pub port number, default is 37177 (same port as in monerod\'s \"--zmq-pub\" command line parameter)<br>
+                        --host                IP address of your Dinastycoin node, default is 127.0.0.1<br>
+                        --rpc-port            dinastycoind RPC API port number, default is 37176<br>
+                        --zmq-port            dinastycoind ZMQ pub port number, default is 37177 (same port as in dinastycoind\'s \"--zmq-pub\" command line parameter)<br>
                         --stratum             Comma-separated list of IP:port for stratum server to listen on<br>
                         --p2p                 Comma-separated list of IP:port for p2p server to listen on<br>
                         --addpeers            Comma-separated list of IP:port of other p2pool nodes to connect to<br>
@@ -466,12 +468,12 @@ Rectangle {
                         --stratum-api         An alias for --local-api<br>
                         --no-cache            Disable p2pool.cache<br>
                         --no-color            Disable colors in console output<br>
-                        --no-randomx          Disable internal RandomX hasher: p2pool will use RPC calls to monerod to check PoW hashes<br>
+                        --no-randomx          Disable internal RandomX hasher: p2pool will use RPC calls to dinastycoind to check PoW hashes<br>
                         --out-peers N         Maximum number of outgoing connections for p2p server (any value between 10 and 1000)<br>
                         --in-peers N          Maximum number of incoming connections for p2p server (any value between 10 and 1000)<br>
                         --start-mining N      Start built-in miner using N threads (any value between 1 and 64)<br>
                         --no-autodiff         Disable automatic difficulty adjustment for miners connected to stratum (WARNING: incompatible with Nicehash and MRR)<br>
-                        --rpc-login           Specify username[:password] required for Monero RPC server<br>
+                        --rpc-login           Specify username[:password] required for Dinastycoin RPC server<br>
                         --socks5              Specify IP:port of a SOCKS5 proxy to use for outgoing connections<br>
                         --no-dns              Disable DNS queries, use only IP addresses to connect to peers (seed node DNS will be unavailable too)<br>
                         --p2p-external-port   Port number that your router uses for mapping to your local p2p port. Use it if you are behind a NAT and still want to accept incoming connections<br>
@@ -482,8 +484,8 @@ Rectangle {
                         --version             Print p2pool's version and build details<br>
                         --tls-cert file       Load TLS certificate chain from \"file\" in the PEM format<br>
                         --tls-cert-key file   Load TLS certificate private key from \"file\" in the PEM format<br>
-                        --rpc-ssl             Enable SSL on RPC connections to the Monero node<br>
-                        --rpc-ssl-fingerprint base64-encoded fingerprint of the Monero node's certificate (optional, use it for certificate pinning)<br>
+                        --rpc-ssl             Enable SSL on RPC connections to the Dinastycoin node<br>
+                        --rpc-ssl-fingerprint base64-encoded fingerprint of the Dinastycoin node's certificate (optional, use it for certificate pinning)<br>
                         --no-stratum-http     Disable HTTP on Stratum ports<br>
                         --help                Show this help message
                     "
