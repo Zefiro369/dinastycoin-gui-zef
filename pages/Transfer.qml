@@ -394,11 +394,11 @@ Rectangle {
                                 wrapMode: Text.WrapAnywhere
                                 placeholderText: {
                                     if(persistentSettings.nettype == NetworkType.MAINNET){
-                                        return "4.. / 8.. / monero:.. / OpenAlias";
+                                        return "4.. / 8.. / dinastycoinComponents:.. / OpenAlias";
                                     } else if (persistentSettings.nettype == NetworkType.STAGENET){
-                                        return "5.. / 7.. / monero:..";
+                                        return "5.. / 7.. / dinastycoin:..";
                                     } else if(persistentSettings.nettype == NetworkType.TESTNET){
-                                        return "9.. / B.. / monero:..";
+                                        return "9.. / B.. / dinastycoin:..";
                                     }
                                 }
                                 onTextChanged: {
@@ -1045,7 +1045,7 @@ Rectangle {
                 informationPopup.open();
             } else {
                 informationPopup.title = qsTr("Information") + translationManager.emptyString
-                informationPopup.text  = qsTr("Monero sent successfully") + translationManager.emptyString
+                informationPopup.text  = qsTr("Dinastycoin sent successfully") + translationManager.emptyString
                 informationPopup.icon  = StandardIcon.Information
                 informationPopup.onCloseCallback = null
                 informationPopup.open();

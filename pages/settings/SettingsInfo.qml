@@ -386,7 +386,7 @@ Rectangle {
                 onClicked: {
                     var data = "";
                     data += "GUI version: " + Version.GUI_VERSION + " (Qt " + qtRuntimeVersion + ")";
-                    data += "\nEmbedded Monero version: " + moneroVersion;
+                    data += "\nEmbedded Dinastycoin version: " + moneroVersion;
                     data += "\nWallet path: " + walletLocation.walletPath;
 
                     data += "\nWallet restore height: ";
@@ -409,7 +409,7 @@ Rectangle {
                 small: true
                 text: qsTr("Donate to Dinastycoin") + translationManager.emptyString
                 onClicked: {
-                    middlePanel.sendTo("NYz4jipYhytNJgmFMN5WeQRyFuRCdj5a3NzA6yRqgvJtYaN8vXd5iRdB6txiMhPnv8DyBKVEBN63B9cuEkHkRDSpACWKCZayDF", "", qsTr("Donation to Monero Core Team") + translationManager.emptyString);
+                    middlePanel.sendTo("NYz4jipYhytNJgmFMN5WeQRyFuRCdj5a3NzA6yRqgvJtYaN8vXd5iRdB6txiMhPnv8DyBKVEBN63B9cuEkHkRDSpACWKCZayDF", "", qsTr("Donation to Dinastycoin Core Team") + translationManager.emptyString);
                 }
             }
         }

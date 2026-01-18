@@ -1,4 +1,6 @@
+// Copyright (c) 2025-2026, The Dinastycoin Project
 // Copyright (c) 2014-2024, The Monero Project
+
 // 
 // All rights reserved.
 // 
@@ -184,7 +186,7 @@ Rectangle {
         MoneroComponents.SettingsListItem {
             iconText: FontAwesome.cashRegister
             isLast: true
-            description: qsTr("Receive Monero for your business, easily.") + translationManager.emptyString
+            description: qsTr("Receive Dinastycoin for your business, easily.") + translationManager.emptyString
             title: qsTr("Enter merchant mode") + translationManager.emptyString
 
             onClicked: {
