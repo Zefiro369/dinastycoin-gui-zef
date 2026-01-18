@@ -100,13 +100,16 @@ Rectangle {
             }
 
             WizardMenuItem {
+                visible: persistentSettings.nettype !== 0
+                enabled: persistentSettings.nettype !== 0
+ 
                 headerText: {
                     var nettype = persistentSettings.nettype;
                     return qsTr("Create a new wallet from hardware") + (nettype === 2 ? " (" + qsTr("stagenet") + ")"
                                                                         : nettype === 1 ? " (" + qsTr("testnet") + ")"
                                                                                         : "") + translationManager.emptyString
                 }
-                bodyText: qsTr("Connect your hardware wallet to create a new Monero wallet.") + translationManager.emptyString
+                bodyText: qsTr("Connect your hardware wallet to create a new Dinastycoin wallet.") + translationManager.emptyString
                 imageIcon: "qrc:///images/restore-wallet-from-hardware.png"
 
                 onMenuClicked: {
