@@ -444,8 +444,8 @@ Si raccomanda inserire la passphrase su un portafoglio hardware per una maggior 
     </message>
     <message>
         <location filename="../pages/History.qml" line="1400"/>
-        <source>Export all history</source>
-        <translation>Esporta tutta la cronologia</translation>
+             <source>Export all history</source>
+        <translation>Esporta cronologia</translation>
     </message>
     <message>
         <location filename="../pages/History.qml" line="1639"/>
@@ -3775,8 +3775,8 @@ potrebbe essere richiesta una azione da parte tua.</translation>
     </message>
     <message>
         <location filename="../wizard/WizardHome.qml" line="164"/>
-        <source>Change wallet mode</source>
-        <translation>Cambia modalità del portafoglio</translation>
+             <source>Change wallet mode</source>
+        <translation>Cambia modalità</translation>
     </message>
     <message>
         <location filename="../wizard/WizardHome.qml" line="179"/>
