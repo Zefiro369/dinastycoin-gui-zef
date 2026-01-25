@@ -1521,19 +1521,19 @@ Il mining ti offre anche una piccola possibilità di guadagnare Dinastycoin. Il 
     <message>
         <location filename="../pages/Receive.qml" line="422"/>
         <source>Address #</source>
-        <translation>Indirizzo #<></translation>
+        <translation>Indirizzo #</translation>
     </message>
     <message>
         <location filename="../pages/Receive.qml" line="439"/>
         <location filename="../pages/Receive.qml" line="722"/>
         <source>no label</source>
-        <translation>nessuna etichetta<></translation>
+        <translation>nessuna etichetta</translation>
     </message>
     <message>
         <location filename="../pages/Receive.qml" line="446"/>
         <location filename="../pages/Receive.qml" line="683"/>
         <source>Edit address label</source>
-        <translation>Modifica l&apos;etichetta dell&apos;indirizzo<></translation>
+        <translation>Modifica l&apos;etichetta dell&apos;indirizzo</translation>
     </message>
     <message>
         <location filename="../pages/Receive.qml" line="475"/>
@@ -1555,7 +1555,7 @@ Il mining ti offre anche una piccola possibilità di guadagnare Dinastycoin. Il 
     <message>
         <location filename="../pages/Receive.qml" line="667"/>
         <source>See transactions</source>
-        <translation>Visualizza le transazioni<></translation>
+        <translation>Visualizza le transazioni</translation>
     </message>
     <message>
         <location filename="../pages/Receive.qml" line="718"/>
@@ -1575,7 +1575,7 @@ Il mining ti offre anche una piccola possibilità di guadagnare Dinastycoin. Il 
     <message>
         <location filename="../pages/Receive.qml" line="763"/>
         <source>QR code saved to </source>
-        <translation>Codice QR salvato in </translation></translation>
+        <translation>Codice QR salvato in</translation>
     </message>
 </context>
 <context>
@@ -2860,7 +2860,7 @@ Aggiorna o connetti ad un altro daemon</translation>
         <location filename="../pages/Transfer.qml" line="903"/>
         <location filename="../pages/Transfer.qml" line="929"/>
         <source>Export</source>
-        <translation>Esporta</translation>\
+        <translation>Esporta</translation>
     </message>
     <message>
         <location filename="../pages/Transfer.qml" line="909"/>
@@ -3268,7 +3268,7 @@ In caso di prova di spesa, non serve specificare l&apos;indirizzo del ricevente.
     <message>
         <location filename="../components/UpdateDialog.qml" line="98"/>
         <source>Please visit Dinastycoin.com for details</source>
-        <translation>Visita Dinastycoin.com per maggiori informazioni</translation></translation>
+        <translation>Visita Dinastycoin.com per maggiori informazioni</translation>
     </message>
     <message>
         <location filename="../components/UpdateDialog.qml" line="102"/>
@@ -3347,36 +3347,36 @@ In caso di prova di spesa, non serve specificare l&apos;indirizzo del ricevente.
         <location filename="../js/Utils.js" line="59"/>
         <source>%n second(s) ago</source>
         <comment>0</comment>
-        <translation >%n secondi fa
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-        </translation>
+         <translation>
+            <numerusform>%n second fa</numerusform>
+            <numerusform>%n secondi fa</numerusform>
+            </translation>
     </message>
     <message numerus="yes">
         <location filename="../js/Utils.js" line="61"/>
         <source>%n minute(s) ago</source>
         <comment>0</comment>
-        <translation>%n minuti fa
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n minuto fa</numerusform>
+            <numerusform>%n minuti fa</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <location filename="../js/Utils.js" line="63"/>
         <source>%n hour(s) ago</source>
         <comment>0</comment>
-        <translation>%n ore fa
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n ora fa</numerusform>
+            <numerusform>%n ore fa</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <location filename="../js/Utils.js" line="65"/>
         <source>%n day(s) ago</source>
         <comment>0</comment>
-        <translation>%n giorni fa
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+         <translation>
+            <numerusform>%n giorno fa</numerusform>
+            <numerusform>%n giorni fa</numerusform>
         </translation>
     </message>
     <message>
@@ -4045,7 +4045,7 @@ potrebbe essere richiesta una azione da parte tua.</translation>
     <message>
         <location filename="../wizard/WizardRestoreWallet1.qml" line="211"/>
         <source>Enter your 25 word mnemonic seed</source>
-        <translation>Immetti il tuo seed mnemonico di 25 parole</translation></translation>
+        <translation>Immetti il tuo seed mnemonico di 25 parole</translation>
     </message>
     <message>
         <location filename="../wizard/WizardRestoreWallet1.qml" line="220"/>
@@ -4075,7 +4075,7 @@ potrebbe essere richiesta una azione da parte tua.</translation>
     <message>
         <location filename="../wizard/WizardRestoreWallet1.qml" line="262"/>
         <source>Leave blank to create a view-only wallet</source>
-        <translation>La lasciare vuota per creare un portafoglio di visualizzazione</translation></translation>
+        <translation>La lasciare vuota per creare un portafoglio di visualizzazione</translation>
     </message>
     <message>
         <location filename="../wizard/WizardRestoreWallet1.qml" line="273"/>

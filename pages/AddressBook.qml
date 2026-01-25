@@ -324,11 +324,11 @@ Rectangle {
                     .arg(qsTr("Address")) + translationManager.emptyString
                 placeholderText: {
                     if(persistentSettings.nettype == NetworkType.MAINNET){
-                        return "4.. / 8.. / Dinastycoin:.. / OpenAlias";
+                        return "NY.. / NX.. / Dinastycoin:.. / OpenAlias";
                     } else if (persistentSettings.nettype == NetworkType.STAGENET){
-                        return "5.. / 7.. / Dinastycoin:..";
+                        return "SY.. / SX.. / Dinastycoin:..";
                     } else if(persistentSettings.nettype == NetworkType.TESTNET){
-                        return "9.. / B.. / Dinastycoin:..";
+                        return "TY.. / TX.. / Dinastycoin:..";
                     }
                 }
                 wrapMode: Text.WrapAnywhere
