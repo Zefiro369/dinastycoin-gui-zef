@@ -117,7 +117,14 @@ ApplicationWindow {
             "cryptocompare": {
                 "DCYusd": "https://min-api.cryptocompare.com/data/price?fsym=DCY&tsyms=USD",
                 "DCYeur": "https://min-api.cryptocompare.com/data/price?fsym=DCY&tsyms=EUR"
-            }
+            },
+            "coinlore": {
+                "DCYusd": "https://api.coinlore.net/api/ticker/?id=2204&fiat=usd",
+                "DCYeur": "https://api.coinlore.net/api/ticker/?id=2204&fiat=eur",
+             "fx_usd": {
+                "USD": "https://open.er-api.com/v6/latest/USD"
+            } 
+          }
         }
     }
 
@@ -1267,10 +1274,16 @@ ApplicationWindow {
         var s = ("" + resp[key]).replace(",", ".");
         return parseFloat(s);
     }
-
-    appWindow.fiatApiError("Unsupported price source URL: " + url);
-    return 0;
- }
+    else if(url.startsWith("https://api.coinlore.net/api/")){
+        if(!Array.isArray(resp) || resp.length < 1 || !resp[0].hasOwnProperty("price_usd")){
+            appWindow.fiatApiError("Coinlore missing price_usd");
+            return 0;
+        }
+        return parseFloat(resp[0].price_usd);
+    }
+        appWindow.fiatApiError("Unsupported price source URL: " + url);
+        return 0;
+    }
 
     function fiatApiGetCurrency(url) {
         var apis = appWindow.fiatPriceAPIs;
@@ -1289,36 +1302,51 @@ ApplicationWindow {
         }
     }
 
-    function fiatApiJsonReceived(url, resp, error) {
-        if (error) {
-            appWindow.fiatApiError(error);
-            return;
-        }
+  function fiatApiJsonReceived(url, resp, error) {
+    if (error) { appWindow.fiatApiError(error); return; }
 
-        try {
-            resp = JSON.parse(resp);
-        } catch (e) {
-            appWindow.fiatApiError("bad JSON: " + e);
-            return;
-        }
+    try { resp = JSON.parse(resp); }
+    catch (e) { appWindow.fiatApiError("bad JSON: " + e); return; }
 
-        // handle incoming JSON, set ticker
-        var currency = appWindow.fiatApiGetCurrency(url);
-        if(typeof currency == "undefined"){
-            appWindow.fiatApiError("could not get currency");
-            return;
-        }
-
-        var ticker = appWindow.fiatApiParseTicker(url, resp, currency);
-        if(ticker <= 0){
-            appWindow.fiatApiError("could not get ticker");
-            return;
-        }
-
-        appWindow.fiatPrice = ticker;
-
-        appWindow.updateBalance();
+    var currency = appWindow.fiatApiGetCurrency(url);
+    if(typeof currency == "undefined"){
+        appWindow.fiatApiError("could not get currency");
+        return;
     }
+
+    // Coinlore EUR needs FX conversion
+    if (url.startsWith("https://api.coinlore.net/api/") && currency === "DCYeur") {
+        var usd = appWindow.fiatApiParseTicker(url, resp, "DCYusd");
+        if(!(usd > 0)) { appWindow.fiatApiError("could not get USD ticker from coinlore"); return; }
+
+        network.getJSON(appWindow.fiatPriceAPIs.fx_usd.USD, function(fxUrl, fxResp, fxErr){
+            if (fxErr) { appWindow.fiatApiError(fxErr); return; }
+            try { fxResp = JSON.parse(fxResp); }
+            catch (e2) { appWindow.fiatApiError("bad FX JSON: " + e2); return; }
+
+            if(!fxResp.hasOwnProperty("rates") || !fxResp.rates.hasOwnProperty("EUR")){
+                appWindow.fiatApiError("FX missing rates.EUR");
+                return;
+            }
+
+            var usdEur = parseFloat(fxResp.rates.EUR);
+            var eur = usd * usdEur;
+
+            appWindow.fiatPrice = eur;
+            appWindow.updateBalance();
+        });
+        return;
+    }
+
+    var ticker = appWindow.fiatApiParseTicker(url, resp, currency);
+    if(!(ticker > 0)){
+        appWindow.fiatApiError("could not get ticker");
+        return;
+    }
+
+    appWindow.fiatPrice = ticker;
+    appWindow.updateBalance();
+}
 
     function fiatApiRefresh(){
         // trigger API call
@@ -1528,7 +1556,7 @@ ApplicationWindow {
 
         property bool fiatPriceEnabled: false
         property bool fiatPriceToggle: false
-        property string fiatPriceProvider: "kraken"
+        property string fiatPriceProvider: "dinastycoinclub"
         property string fiatPriceCurrency: "DCYusd"
 
         property string proxyAddress: "127.0.0.1:9050"
