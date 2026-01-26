@@ -106,17 +106,17 @@ ApplicationWindow {
     property real fiatPrice: 0
     property var fiatPriceAPIs: {
         return {
-            "kraken": {
-                "DCYusd": "https://api.kraken.com/0/public/Ticker?pair=DCYUSD",
-                "DCYeur": "https://api.kraken.com/0/public/Ticker?pair=DCYEUR"
-            },
+            "dinastycoinclub": {
+                "DCYusd": "https://dinastycoin.club/apidcy/exchange/dcyusd",
+                "DCYeur": "https://dinastycoin.club/apidcy/exchange/dcyeur"
+                },
             "coingecko": {
                 "DCYusd": "https://api.coingecko.com/api/v3/simple/price?ids=dinastycoin&vs_currencies=usd",
                 "DCYeur": "https://api.coingecko.com/api/v3/simple/price?ids=dinastycoin&vs_currencies=eur"
             },
             "cryptocompare": {
                 "DCYusd": "https://min-api.cryptocompare.com/data/price?fsym=DCY&tsyms=USD",
-                "DCYeur": "https://min-api.cryptocompare.com/data/price?fsym=DCY&tsyms=EUR",
+                "DCYeur": "https://min-api.cryptocompare.com/data/price?fsym=DCY&tsyms=EUR"
             }
         }
     }
@@ -1242,32 +1242,35 @@ ApplicationWindow {
     }
 
     function fiatApiParseTicker(url, resp, currency){
-        // parse & validate incoming JSON
-        if(url.startsWith("https://api.kraken.com/0/")){
-            if(resp.hasOwnProperty("error") && resp.error.length > 0 || !resp.hasOwnProperty("result")){
-                appWindow.fiatApiError("Kraken API has error(s)");
-                return;
-            }
-
-            var key = currency === "DCYeur" ? "XDCYZEUR" : "XDCYZUSD";
-            var ticker = resp.result[key]["c"][0];
-            return ticker;
-        } else if(url.startsWith("https://api.coingecko.com/api/v3/")){
-            var key = currency === "DCYeur" ? "eur" : "usd";
-            if(!resp.hasOwnProperty("dinastycoin") || !resp["dinastycoin"].hasOwnProperty(key)){
-                appWindow.fiatApiError("Coingecko API has error(s)");
-                return;
-            }
-            return resp["dinastycoin"][key];
-        } else if(url.startsWith("https://min-api.cryptocompare.com/data/")){
-            var key = currency === "dcyeur" ? "EUR" : "USD";
-            if(!resp.hasOwnProperty(key)){
-                appWindow.fiatApiError("cryptocompare API has error(s)");
-                return;
-            }
-            return resp[key];
+     if(url.startsWith("https://api.coingecko.com/api/v3/")){
+        var key = currency === "DCYeur" ? "eur" : "usd";
+        if(!resp.hasOwnProperty("dinastycoin") || !resp["dinastycoin"].hasOwnProperty(key)){
+            appWindow.fiatApiError("Coingecko missing field dinastycoin." + key);
+            return 0;
         }
+        return parseFloat(resp["dinastycoin"][key]);
     }
+    else if(url.startsWith("https://min-api.cryptocompare.com/data/")){
+        var key = currency === "DCYeur" ? "EUR" : "USD";   // FIX
+        if(!resp.hasOwnProperty(key)){
+            appWindow.fiatApiError("CryptoCompare missing field " + key);
+            return 0;
+        }
+        return parseFloat(resp[key]);
+    }
+    else if(url.startsWith("https://dinastycoin.club/apidcy/exchange/")){
+        var key = currency === "DCYeur" ? "dcyeur" : "dcyusd";
+        if(!resp.hasOwnProperty(key)){
+            appWindow.fiatApiError("dinastycoin.club missing field " + key);
+            return 0;
+        }
+        var s = ("" + resp[key]).replace(",", ".");
+        return parseFloat(s);
+    }
+
+    appWindow.fiatApiError("Unsupported price source URL: " + url);
+    return 0;
+ }
 
     function fiatApiGetCurrency(url) {
         var apis = appWindow.fiatPriceAPIs;
