@@ -3,7 +3,7 @@
 ; Non-commercial use only
 
 #define MyAppName "dinastycoin wallet gui beta"
-#define MyAppVersion "8.0.1beta"
+#define MyAppVersion "8.0.3beta"
 #define MyAppPublisher "dinastycoin club"
 #define MyAppURL "https://dinastycoin.com/"
 #define MyAppExeName "dinastycoin-wallet-gui.exe"
