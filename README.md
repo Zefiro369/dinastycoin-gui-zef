@@ -180,7 +180,7 @@ Packaging for your favorite distribution would be a welcome contribution!
 
 ### Building on Linux
 
-(Tested on Ubuntu 17.10 x64, Ubuntu 18.04 x64 and Gentoo x64)
+(Tested on Ubuntu 20.04 x64, Ubuntu 24.x x64 
 
 1. Install Dinastycoin dependencies
 
@@ -234,6 +234,7 @@ The following instructions will fetch Qt from your distribution's repositories i
     ```
 
 4. Build
+* note:  cmake minimum version is 4.2.x is required
 
     ```
     make release -j4

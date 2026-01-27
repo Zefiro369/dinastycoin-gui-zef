@@ -76,6 +76,9 @@ if(NOT ANDROID)
 else()
     add_library(dinastycoin-wallet-gui SHARED ${dinastycoin_wallet_gui_sources})
     set_target_properties(dinastycoin-wallet-gui PROPERTIES COMPILE_DEFINITIONS "ANDROID")
+    set_target_properties(dinastycoin-wallet-gui PROPERTIES QT_ANDROID_PACKAGE_SOURCE_DIR "${CMAKE_SOURCE_DIR}/android"
+)
+
 endif()
 
 set_target_properties(dinastycoin-wallet-gui PROPERTIES
