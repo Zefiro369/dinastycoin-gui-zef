@@ -20,9 +20,7 @@ jobs:
 
       - name: Compilazione (Build)
         run: |
-          # Creiamo un link simbolico così CMake trova il file anche se ha la 's'
           ln -s $(pwd)/images/appicons.icns $(pwd)/images/appicon.icns
-          
           mkdir build
           cd build
           cmake -D OpenSSL_ROOT=$(brew --prefix openssl@3) \
@@ -30,13 +28,17 @@ jobs:
                 -D BUILD_GUI_DEPS=ON ..
           make -j3
 
-      - name: Salva il file compilato
+      - name: Deploy Qt (Impacchettamento librerie)
+        run: |
+          # Usiamo il tool ufficiale per includere le librerie Qt nel bundle
+          $(brew --prefix qt@5)/bin/macdeployqt build/bin/dinastycoin-gui.app -verbose=1 -dmg
+          # Il comando sopra creerà automaticamente un file .dmg nella cartella build/bin/
+
+      - name: Salva il file DMG professionale
         uses: actions/upload-artifact@v4
         with:
-          name: Dinastycoin-Mac-Build
-          # Questa riga cerca ricorsivamente tutti i file eseguibili o pacchetti .app
+          name: Dinastycoin-MacOS-Installer
           path: |
-            build/bin/
-            build/*.dmg
-            build/**/*.app
-          if-no-files-found: error # Se non trova nulla, ora ci darà errore così capiamo perché
+            build/bin/*.dmg
+            build/bin/*.app
+          if-no-files-found: error
