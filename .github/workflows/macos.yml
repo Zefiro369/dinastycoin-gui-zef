@@ -5,7 +5,7 @@ on:
 
 jobs:
   build:
-    runs-on: macos-13 # Usiamo Intel Ventura per massima compatibilità
+    runs-on: macos-15-intel # Usiamo Intel Ventura per massima compatibilità
 
     steps:
       - name: Checkout del codice
