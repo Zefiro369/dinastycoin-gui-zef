@@ -1,7 +1,9 @@
 name: ci/gh-actions/gui
 
-on: [push, pull_request]
-
+# on: [push, pull_request]
+on: 
+  workflow_dispatch: # Questo ti permette di avviare la build a mano quando vuoi
+  
 env:
   FREE_DISKSPACE: |
     sudo rm -rf /usr/local/.ghcup /usr/share/dotnet /usr/share/swift /usr/share/miniconda
