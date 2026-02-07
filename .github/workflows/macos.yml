@@ -20,9 +20,11 @@ jobs:
 
       - name: Compilazione (Build)
         run: |
+          # Creiamo un link simbolico così CMake trova il file anche se ha la 's'
+          ln -s $(pwd)/images/appicons.icns $(pwd)/images/appicon.icns
+          
           mkdir build
           cd build
-          # Diciamo a CMake dove trovare OpenSSL e Qt
           cmake -D OpenSSL_ROOT=$(brew --prefix openssl@3) \
                 -D CMAKE_PREFIX_PATH=$(brew --prefix qt@5) \
                 -D BUILD_GUI_DEPS=ON ..
