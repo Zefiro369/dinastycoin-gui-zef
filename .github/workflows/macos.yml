@@ -1,0 +1,35 @@
+name: Build Dinastycoin MacOS
+
+on:
+  workflow_dispatch: # Questo ti permette di avviare la build a mano quando vuoi
+
+jobs:
+  build:
+    runs-on: macos-13 # Usiamo Intel Ventura per massima compatibilità
+
+    steps:
+      - name: Checkout del codice
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive # Scarica automaticamente tesla369 e gli altri
+
+      - name: Installa dipendenze Mac
+        run: |
+          brew install cmake pkg-config qt@5 boost openssl@3 zeromq libpgm hidapi readline
+          echo "PATH=$(brew --prefix qt@5)/bin:$PATH" >> $GITHUB_PATH
+
+      - name: Compilazione (Build)
+        run: |
+          mkdir build
+          cd build
+          # Diciamo a CMake dove trovare OpenSSL e Qt
+          cmake -D OpenSSL_ROOT=$(brew --prefix openssl@3) \
+                -D CMAKE_PREFIX_PATH=$(brew --prefix qt@5) \
+                -D BUILD_GUI_DEPS=ON ..
+          make -j3
+
+      - name: Salva il file compilato
+        uses: actions/upload-artifact@v4
+        with:
+          name: Dinastycoin-Mac-Executable
+          path: build/bin/
