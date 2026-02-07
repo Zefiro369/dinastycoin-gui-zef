@@ -33,5 +33,10 @@ jobs:
       - name: Salva il file compilato
         uses: actions/upload-artifact@v4
         with:
-          name: Dinastycoin-Mac-Executable
-          path: build/bin/
+          name: Dinastycoin-Mac-Build
+          # Questa riga cerca ricorsivamente tutti i file eseguibili o pacchetti .app
+          path: |
+            build/bin/
+            build/*.dmg
+            build/**/*.app
+          if-no-files-found: error # Se non trova nulla, ora ci darà errore così capiamo perché
