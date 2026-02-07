@@ -30,15 +30,24 @@ jobs:
 
       - name: Deploy Qt (Impacchettamento librerie)
         run: |
-          # Usiamo il tool ufficiale per includere le librerie Qt nel bundle
-          $(brew --prefix qt@5)/bin/macdeployqt build/bin/dinastycoin-gui.app -verbose=1 -dmg
-          # Il comando sopra creerà automaticamente un file .dmg nella cartella build/bin/
+          # 1. Vediamo dove si trova effettivamente il file .app
+          echo "Cerco il bundle .app..."
+          find build -name "*.app"
+          
+          # 2. Salviamo il percorso in una variabile
+          APP_PATH=$(find build -name "*.app" | head -n 1)
+          echo "Il percorso trovato è: $APP_PATH"
+          
+          # 3. Eseguiamo il deploy su quel percorso
+          $(brew --prefix qt@5)/bin/macdeployqt "$APP_PATH" -verbose=1 -dmg
+
 
       - name: Salva il file DMG professionale
         uses: actions/upload-artifact@v4
         with:
           name: Dinastycoin-MacOS-Installer
           path: |
-            build/bin/*.dmg
-            build/bin/*.app
+            build/**/*.dmg
+            build/**/*.app
           if-no-files-found: error
+
