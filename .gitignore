@@ -2,6 +2,10 @@
 *.user.*
 translations/*.qm
 build
+build-docker*/
+docker-*.log
+dinastycoin-linux-x64-portable-v*/
+dinastycoin-linux-x64-portable-*.tar.bz2
 version.js
 # IOS stuff below
 moc_*
@@ -48,3 +52,15 @@ tags
 # File temporanei Windows
 *.lnk
 *Zone.Identifier
+
+# Local build scripts (not part of official distribution)
+compila-docker.sh
+crea-pacchetto-finale.sh
+estraI-runtime-compat.sh
+launch-all.sh
+launch-daemon.sh
+launch-gui.sh
+pulisci-tutto.sh
+ricompila-docker-fix.sh
+run-gui.sh
+test-daemon-pulito.sh

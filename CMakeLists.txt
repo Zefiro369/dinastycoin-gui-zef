@@ -57,6 +57,15 @@ if(NOT MANUAL_SUBMODULES)
   endif()
 endif()
 
+# RPATH portable per binari Linux: cercano librerie in ./lib, ./lib-compat, ./lib-xcb
+if(UNIX AND NOT APPLE AND NOT ANDROID)
+    set(CMAKE_SKIP_RPATH OFF)
+    set(CMAKE_BUILD_WITH_INSTALL_RPATH TRUE)
+    set(CMAKE_INSTALL_RPATH "\$ORIGIN/lib:\$ORIGIN/lib-compat:\$ORIGIN/lib-xcb")
+    set(CMAKE_BUILD_RPATH "\$ORIGIN/lib:\$ORIGIN/lib-compat:\$ORIGIN/lib-xcb")
+    message(STATUS "RPATH portable settato: \$ORIGIN/lib:\$ORIGIN/lib-compat:\$ORIGIN/lib-xcb")
+endif()
+
 add_subdirectory(dinastycoin)
 add_subdirectory(external)
 
@@ -105,7 +114,6 @@ find_library(SODIUM_LIBRARY sodium)
 message(STATUS "libsodium: libraries at ${SODIUM_LIBRARY}")
 
 if(UNIX AND NOT APPLE AND NOT ANDROID)
-    set(CMAKE_SKIP_RPATH ON)
     set(CMAKE_FIND_LIBRARY_SUFFIXES_PREV ${CMAKE_FIND_LIBRARY_SUFFIXES})
     set(CMAKE_FIND_LIBRARY_SUFFIXES ".so")
     find_package(X11 REQUIRED)
