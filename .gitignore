@@ -56,7 +56,7 @@ tags
 # Local build scripts (not part of official distribution)
 compila-docker.sh
 crea-pacchetto-finale.sh
-estraI-runtime-compat.sh
+estrai-runtime-compat.sh
 launch-all.sh
 launch-daemon.sh
 launch-gui.sh

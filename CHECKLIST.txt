@@ -1,0 +1,61 @@
+╔════════════════════════════════════════════════════════════════════╗
+║                   CHECKLIST POST-RIAVVIO                           ║
+║              Compilazione Docker Dinastycoin GUI                   ║
+╚════════════════════════════════════════════════════════════════════╝
+
+📍 DIRECTORY PROGETTO:
+   /home/user/Programmi/wcripto/source_01/dinastycoin-zef/dinastycoin-gui-zef
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+✅ STEP 1: Verifica Docker
+   
+   $ docker --version
+   $ docker info
+   
+   Se ERRORE → Installa Docker:
+   $ sudo pacman -S docker
+   $ sudo systemctl enable --now docker
+   $ sudo usermod -aG docker $USER
+   $ exit  # Poi rilogin o riavvia
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+✅ STEP 2: Compila in Docker
+   
+   $ cd /home/user/Programmi/wcripto/source_01/dinastycoin-zef/dinastycoin-gui-zef
+   $ ./compila-docker.sh
+   
+   ⏱️  Tempo prima build: ~2-3 ore (crea immagine Docker)
+   ⏱️  Build successive: ~35-45 minuti (solo compilazione)
+   
+   💾 Binari in: build/release-docker/
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+📖 DOCUMENTAZIONE COMPLETA:
+   
+   Leggi: RIAVVIO-ISTRUZIONI.md
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+🛠️  FILE CREATI PRIMA DEL RIAVVIO:
+   
+   ✓ compila-docker.sh       - Build automatica Docker
+   ✓ pulisci-tutto.sh        - Pulizia progetto
+   ✓ test-daemon-pulito.sh   - Test daemon isolato
+   ✓ RIAVVIO-ISTRUZIONI.md   - Guida completa
+   ✓ CHECKLIST.txt           - Questo file
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+🐛 PROBLEMA RISOLTO:
+   
+   Il daemon crashava in cn_slow_hash durante generate_genesis_block
+   Causa: GCC 15.2.1 su Manjaro 26.0.3 incompatibile
+   Soluzione: Build Docker con Ubuntu 18.04 (ambiente stabile)
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+                        CREATO: 5 marzo 2026, 19:55
+                        SISTEMA: Manjaro 26.0.3 Plasma 6

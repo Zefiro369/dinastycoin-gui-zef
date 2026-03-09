@@ -1,0 +1,14 @@
+╔═══════════════════════════════════════════════════════════╗
+║     DOPO IL RIAVVIO - ESEGUI QUESTI COMANDI               ║
+╚═══════════════════════════════════════════════════════════╝
+
+cd ~/Programmi/wcripto/source_01/dinastycoin-zef/dinastycoin-gui-zef
+
+./compila-docker.sh
+
+
+▸ Prima build: ~2-3 ore (crea immagine Docker Ubuntu 18.04)
+▸ Binari output: build/release-docker/
+
+▸ Documentazione completa: cat RIAVVIO-ISTRUZIONI.md
+▸ Checklist: cat CHECKLIST.txt
